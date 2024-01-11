@@ -22,5 +22,11 @@ export class LabsComponent {
     'Crear directivas',
     'Crear guards',
   ]
+  clickHandler(){
+    console.log('click');
+  }
+  dblClickHandler(){
+    console.log('dblclick');
+  }
 
 }
