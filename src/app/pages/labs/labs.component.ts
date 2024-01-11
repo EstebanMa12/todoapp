@@ -13,7 +13,7 @@ import {FormsModule} from '@angular/forms'
 })
 export class LabsComponent {
   welcome = 'Hola!';
-  tasks = [
+  tasks = signal([
     'Instalar Angular CLI',
     'Crear proyecto',
     'Crear componentes',
@@ -24,7 +24,7 @@ export class LabsComponent {
     'Crear pipes',
     'Crear directivas',
     'Crear guards',
-  ]
+  ]);
 ngif: any;
   clickHandler(){
     console.log('click');

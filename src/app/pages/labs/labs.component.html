@@ -43,10 +43,18 @@
     </div>
     <div class="container-control">
       <h1>Estructuras de Control en Angular</h1>
-      <div class="ngif">
+      <!-- <div class="ngif">
         <h3>ngIf</h3>
         <input type="text" class="form-control" [(ngModel)]="ngif">
         <p *ngIf="ngif">ngIf</p>
-      </div>
+      </div> -->
+      <div class="ngfor">
+        <h3>ngFor</h3>
+        <ul>
+          <p>Total: {{tasks().length}}</p>
+          <li *ngFor="let item of tasks(); index as i">
+            {{ i }} {{ item }}
+          </li>
+        </ul>
     </div>
 </div>
