@@ -14,7 +14,9 @@ import {FormsModule} from '@angular/forms'
 export class LabsComponent {
   welcome = 'Hola!';
   tasks = signal([
-    'Instalar Angular CLI',
+    {id: Date.now(),
+    title: 'Instalar Angular CLI',
+    completed: false},
     'Crear proyecto',
     'Crear componentes',
     'Crear servicios',
