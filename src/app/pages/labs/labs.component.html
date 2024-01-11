@@ -1,29 +1,52 @@
-<div class="container">
-  <h1>Events Binding</h1>
-  <div class="row">
-    <div class="col-md-6">
-      <h3>Click Event</h3>
-      <button class="btn btn-primary" (click)="clickHandler()">Click Me</button>
+<div class="main-container">
+  <div class="container">
+    <h1>Events Binding</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Click Event</h3>
+        <button class="btn btn-primary" (click)="clickHandler()">Click Me</button>
+      </div>
+      <div class="col-md-6">
+        <h3>Double click Event</h3>
+        <button class="btn btn-primary" (dblclick)="dblClickHandler()">Double Click Me</button>
+      </div>
+      <div class="keydown">
+        <h3>Keydown Event</h3>
+        <input type="text" class="form-control" (keydown)="keyDownHandler($event)">
+      </div>
+      <div class="keydown-special">
+        <h3>Keydown Event with special key</h3>
+        <p>Shift + t</p>
+        <input type="text" class="form-control" (keydown.shift.t)="clickHandler()">
+      </div>
+      <div class="change">
+        <h3>Change Event</h3>
+        <input type="text" class="form-control" (change)="changeHandler($event)">
+      </div>
+      <div class="change-number">
+        <h3>Change Event with number</h3>
+        <input type="number" class="form-control" (change)="changeHandler($event)">
+      </div>
+
     </div>
-    <div class="col-md-6">
-      <h3>Double click Event</h3>
-      <button class="btn btn-primary" (dblclick)="dblClickHandler()">Double Click Me</button>
+    <hr/>
+    <div class="signals-container">
+      <h1>Signals</h1>
+      <p>Hola mi nombre es {{ name() }} y he escrito esto utilizando signals <br> <span><strong>name </strong>= signal('Esteban'=)</span></p>
+
+      <div class="name-changer">
+        <h3>Change name</h3>
+        <input type="text" [value]="name()" (change)="changeHandler($event)">
+        <br>
+        <p><strong>name: </strong>{{ name() }}</p>
+      </div>
     </div>
-    <div class="keydown">
-      <h3>Keydown Event</h3>
-      <input type="text" class="form-control" (keydown)="keyDownHandler($event)">
-    </div>
-    <div class="keydown-special">
-      <h3>Keydown Event with special key</h3>
-      <p>Shift + t</p>
-      <input type="text" class="form-control" (keydown.shift.t)="clickHandler()">
-    </div>
-    <div class="change">
-      <h3>Change Event</h3>
-      <input type="text" class="form-control" (change)="changeHandler($event)">
-    </div>
-    <div class="change-number">
-      <h3>Change Event with number</h3>
-      <input type="number" class="form-control" (change)="changeHandler($event)">
+    <div class="container-control">
+      <h1>Estructuras de Control en Angular</h1>
+      <div class="ngif">
+        <h3>ngIf</h3>
+        <input type="text" class="form-control" [(ngModel)]="ngif">
+        <p *ngIf="ngif">ngIf</p>
+      </div>
     </div>
 </div>

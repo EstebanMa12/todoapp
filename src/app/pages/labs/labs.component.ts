@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {FormsModule} from '@angular/forms'
+
 
 @Component({
   selector: 'app-labs',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,
+    FormsModule],
   templateUrl: './labs.component.html',
   styleUrl: './labs.component.sass'
 })
@@ -22,6 +25,7 @@ export class LabsComponent {
     'Crear directivas',
     'Crear guards',
   ]
+ngif: any;
   clickHandler(){
     console.log('click');
   }
@@ -33,7 +37,13 @@ export class LabsComponent {
     console.log(input.value);
   }
   changeHandler(event:Event){
-    console.log(event);
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value
+    this.name.set(newValue)
   }
+
+  // Signals
+  name = signal('Esteban')
+
 
 }
