@@ -32,5 +32,8 @@ export class LabsComponent {
     const input = event.target as HTMLInputElement;
     console.log(input.value);
   }
+  changeHandler(event:Event){
+    console.log(event);
+  }
 
 }

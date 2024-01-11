@@ -13,4 +13,17 @@
       <h3>Keydown Event</h3>
       <input type="text" class="form-control" (keydown)="keyDownHandler($event)">
     </div>
+    <div class="keydown-special">
+      <h3>Keydown Event with special key</h3>
+      <p>Shift + t</p>
+      <input type="text" class="form-control" (keydown.shift.t)="clickHandler()">
+    </div>
+    <div class="change">
+      <h3>Change Event</h3>
+      <input type="text" class="form-control" (change)="changeHandler($event)">
+    </div>
+    <div class="change-number">
+      <h3>Change Event with number</h3>
+      <input type="number" class="form-control" (change)="changeHandler($event)">
+    </div>
 </div>
