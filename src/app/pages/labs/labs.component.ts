@@ -28,5 +28,9 @@ export class LabsComponent {
   dblClickHandler(){
     console.log('dblclick');
   }
+  keyDownHandler(event:KeyboardEvent){
+    const input = event.target as HTMLInputElement;
+    console.log(input.value);
+  }
 
 }
