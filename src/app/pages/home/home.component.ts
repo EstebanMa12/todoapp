@@ -29,5 +29,10 @@ export class HomeComponent {
   deleteTask(index:number){
     this.tasks.update((tasks) => tasks.filter((task, i) => i !== index));
   }
+  isCompleted = false;
+  completedTask(){
+    this.isCompleted = !this.isCompleted;
+  }
+
 
 }
