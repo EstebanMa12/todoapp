@@ -44,11 +44,17 @@ export class LabsComponent {
   // Signals
   name = signal('Esteban')
   age = signal(5)
+  color = signal('red')
 
   changeAge(event:Event){
     const input = event.target as HTMLInputElement;
     const newValue = parseInt(input.value,10)
     this.age.set(newValue)
+  }
+  changeColor(event:Event){
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value
+    this.color.set(newValue)
   }
 
 
