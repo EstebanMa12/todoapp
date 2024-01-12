@@ -75,7 +75,7 @@ export class HomeComponent {
   updateTask(index: number){
     this.tasks.update((tasks) =>
       tasks.map((task, position) => {
-        if (position === index) {
+        if (position === index && task.completed !== true) {
           return {
             ...task,
             edited: !task.edited,
