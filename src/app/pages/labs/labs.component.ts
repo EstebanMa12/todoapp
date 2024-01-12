@@ -43,6 +43,13 @@ export class LabsComponent {
 
   // Signals
   name = signal('Esteban')
+  age = signal(5)
+
+  changeAge(event:Event){
+    const input = event.target as HTMLInputElement;
+    const newValue = parseInt(input.value,10)
+    this.age.set(newValue)
+  }
 
 
 }

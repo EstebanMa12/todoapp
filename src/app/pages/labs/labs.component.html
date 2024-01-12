@@ -47,8 +47,17 @@
       <div class="control">
         <div class="ngif">
           <h3>ngIf</h3>
-          <span>Solo aparece el mensaje si el nombre es <mark>'Esteban'</mark> </span>
-          <p *ngIf="name() === 'Esteban'">Hola Esteban</p>
+          <span>Solo aparece el mensaje si el nombre es <mark>'Esteban'</mark><br> y si la edad es mayor a 18</span>
+          <br>
+          <input type="number"
+          (change)="changeAge($event)"
+          >
+          <p *ngIf="name() === 'Esteban' && age() > 18; else noEsteban">Hola Esteban</p>
+
+          <!-- This ng-template is used to display a message when the user is not Esteban -->
+          <ng-template #noEsteban>
+            <p>Hola no eres Esteban</p>
+          </ng-template>
         </div>
         <div class="ngfor">
           <h3>ngFor</h3>
@@ -58,6 +67,16 @@
               {{ i }} {{ item }}
             </li>
           </ul>
-            </div>
-      </div>
+        </div>
+        <!-- <div class="ngswitch">
+          <h3>ngSwitch</h3>
+          <input type="text" (change)="changeColor($event)">
+          <div [ngSwitch]="color()">
+            <p *ngSwitchCase="'red'">Red</p>
+            <p *ngSwitchCase="'blue'">Blue</p>
+            <p *ngSwitchCase="'green'">Green</p>
+            <p *ngSwitchDefault>Default</p>
+          </div>
+      </div> -->
+
 </div>
