@@ -14,9 +14,6 @@ import {FormsModule} from '@angular/forms'
 export class LabsComponent {
   welcome = 'Hola!';
   tasks = signal([
-    {id: Date.now(),
-    title: 'Instalar Angular CLI',
-    completed: false},
     'Crear proyecto',
     'Crear componentes',
     'Crear servicios',
@@ -27,7 +24,7 @@ export class LabsComponent {
     'Crear directivas',
     'Crear guards',
   ]);
-ngif: any;
+
   clickHandler(){
     console.log('click');
   }

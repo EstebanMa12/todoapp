@@ -32,29 +32,32 @@
     <hr/>
     <div class="signals-container">
       <h1>Signals</h1>
-      <p>Hola mi nombre es {{ name() }} y he escrito esto utilizando signals <br> <span><strong>name </strong>= signal('Esteban'=)</span></p>
+      <p>Hola mi nombre es {{ name() }} y he escrito esto utilizando signals <br> <code><strong>name </strong>= signal('Esteban')</code></p>
 
       <div class="name-changer">
         <h3>Change name</h3>
         <input type="text" [value]="name()" (change)="changeHandler($event)">
         <br>
-        <p><strong>name: </strong>{{ name() }}</p>
+        <p><strong>name: </strong><mark>{{ name() }}</mark></p>
       </div>
     </div>
+    <hr/>
     <div class="container-control">
       <h1>Estructuras de Control en Angular</h1>
-      <!-- <div class="ngif">
-        <h3>ngIf</h3>
-        <input type="text" class="form-control" [(ngModel)]="ngif">
-        <p *ngIf="ngif">ngIf</p>
-      </div> -->
-      <div class="ngfor">
-        <h3>ngFor</h3>
-        <ul>
-          <p>Total: {{tasks().length}}</p>
-          <li *ngFor="let item of tasks(); index as i">
-            {{ i }} {{ item }}
-          </li>
-        </ul>
-    </div>
+      <div class="control">
+        <div class="ngif">
+          <h3>ngIf</h3>
+          <span>Solo aparece el mensaje si el nombre es <mark>'Esteban'</mark> </span>
+          <p *ngIf="name() === 'Esteban'">Hola Esteban</p>
+        </div>
+        <div class="ngfor">
+          <h3>ngFor</h3>
+          <ul>
+            <p>Total: {{tasks().length}}</p>
+            <li *ngFor="let item of tasks(); index as i">
+              {{ i }} {{ item }}
+            </li>
+          </ul>
+            </div>
+      </div>
 </div>
