@@ -11,23 +11,7 @@ import { log } from 'console';
   styleUrl: './home.component.sass'
 })
 export class HomeComponent {
-  tasks = signal<Task[]>([
-    {
-      id: 1,
-      title: 'Buy milk',
-      completed: false,
-    },
-    {
-      id: 2,
-      title: 'Buy bread',
-      completed: false,
-    },
-    {
-      id: 3,
-      title: 'Buy eggs',
-      completed: false,
-    },
-  ]);
+  tasks = signal<Task[]>([]);
   taskIdCounter = this.tasks.length+1;
   changeHandler(event: Event) {
     const input = event.target as HTMLInputElement;
