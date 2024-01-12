@@ -81,7 +81,10 @@ export class HomeComponent {
             edited: !task.edited,
           };
         }
-        return task;
+        return {
+          ...task,
+          edited: false,
+        };
       })
     );
   }
