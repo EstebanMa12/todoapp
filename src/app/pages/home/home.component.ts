@@ -58,10 +58,20 @@ export class HomeComponent {
       })
     );
   }
-  changeHandlerUpdate(event: Event){
+  changeHandlerUpdate(event: Event, index:number){
     const input = event.target as HTMLInputElement;
     const newTask = input.value;
-    this.addTask(newTask);
-    input.value = '';
+    this.tasks.update((tasks)=>
+      tasks.map((task, position) => {
+        if (position === index) {
+          return {
+            ...task,
+            title: newTask,
+          };
+        }
+        return task;
+      })
+    );
+    this.updateTask(index);
   }
 }

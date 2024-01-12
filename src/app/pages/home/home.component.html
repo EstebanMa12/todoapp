@@ -26,7 +26,7 @@
             >{{ task.title }}</label>
             <button class="destroy" (click)="deleteTask(i)"></button>
           </div>
-          <input class="edit" [value]="task.title" (change)="changeHandler($event)"/>
+          <input class="edit" [value]="task.title" (change)="changeHandlerUpdate($event, i)"/>
         </li>
         <!-- <li class="completed">
           <div class="view">
@@ -44,14 +44,14 @@
           </div>
           <input class="edit" value="Buy a unicorn" />
         </li>-->
-        <li class="editing">
+        <!-- <li class="editing">
           <div class="view">
             <input class="toggle" type="checkbox" />
             <label>Make dishes</label>
             <button class="destroy"></button>
           </div>
           <input class="edit" value="Make dishes" />
-        </li>
+        </li> -->
 
       </ul>
     </section>
