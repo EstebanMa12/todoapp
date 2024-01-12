@@ -17,10 +17,23 @@ export class HomeComponent {
 
   taskIdCounter = this.tasks.length + 1;
 
+  /**
+   * The form control for the new task input field.
+   */
   newTaskCtrl = new FormControl('',{
     nonNullable: true,
     validators:[
       Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(20),
+      // Custom validation
+      (control)=>{
+        if(!control.value.trim().length){
+          return {required:true}
+        }
+        return null;
+      }
+
     ]});
 
   changeHandler() {
