@@ -8,12 +8,14 @@
           Click Me
         </button>
       </div>
+      <hr>
       <div class="col-md-6">
         <h3>Double click Event</h3>
         <button class="btn btn-primary" (dblclick)="dblClickHandler()">
           Double Click Me
         </button>
       </div>
+      <hr>
       <div class="keydown">
         <h3>Keydown Event</h3>
         <input
@@ -22,6 +24,7 @@
           (keydown)="keyDownHandler($event)"
         />
       </div>
+      <hr>
       <div class="keydown-special">
         <h3>Keydown Event with special key</h3>
         <p>Shift + t</p>
@@ -31,6 +34,7 @@
           (keydown.shift.t)="clickHandler()"
         />
       </div>
+      <hr>
       <div class="change">
         <h3>Change Event</h3>
         <input
@@ -39,6 +43,7 @@
           (change)="changeHandler($event)"
         />
       </div>
+      <hr>
       <div class="change-number">
         <h3>Change Event with number</h3>
         <input
@@ -47,23 +52,27 @@
           (change)="changeHandler($event)"
         />
       </div>
+      <hr>
     </div>
     <hr />
-    <div class="signals-container">
+    <div class="signals">
       <h1>Signals</h1>
-      <p>
-        Hola mi nombre es {{ name() }} y he escrito esto utilizando signals
-        <br />
-        <code><strong>name </strong>= signal('Esteban')</code>
-      </p>
-
-      <div class="name-changer">
-        <h3>Change name</h3>
-        <input type="text" [value]="name()" (change)="changeHandler($event)" />
-        <br />
-        <p>
-          <strong>name: </strong><mark>{{ name() }}</mark>
-        </p>
+      <div class="signals-container">
+        <div>
+          <p>
+            Hola mi nombre es {{ name() }} y he escrito esto utilizando signals
+            <br />
+            <code><strong>name </strong>= signal('Esteban')</code>
+          </p>
+        </div>
+        <div class="name-changer">
+          <h3>Change name</h3>
+          <input type="text" [value]="name()" (change)="changeHandler($event)" />
+          <br />
+          <p>
+            <strong>name: </strong><mark>{{ name() }}</mark>
+          </p>
+        </div>
       </div>
     </div>
     <hr />
@@ -107,13 +116,64 @@
             <p *ngSwitchDefault>Default</p>
           </div>
           <hr />
-
           <div class="Input">
             <h3>Controlando un input</h3>
             <input type="color" [formControl]="colorCtrl" />
             <!-- Leyendo el valor del input -->
             <p><strong>color: </strong>{{ colorCtrl.value }}</p>
           </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="production">
+      <h1>Alistando tu aplicación para producción</h1>
+      <div class="production-container">
+        <div>
+          <h3>Controlando el color de un elemento</h3>
+          <svg>
+            <g>
+              <rect
+                x="0"
+                y="0"
+                width="100"
+                height="100"
+                fill="red"
+                stroke="black"
+                stroke-width="1"
+                [attr.fill]="colorCtrl.value"
+              />
+              <circle
+                cx="50"
+                cy="50"
+                r="40"
+                stroke="black"
+                stroke-width="1"
+                fill="yellow"
+              />
+            </g>
+          </svg>
+        </div>
+        <hr/>
+        <div class="width-control">
+          <h3>Controlando el ancho de un elemento</h3>
+          <input type="number" [formControl]="widthCtrl">
+          <span class="box"
+          [style.width.px]="widthCtrl.value"
+          >
+          </span>
+        </div>
+        <hr/>
+        <div class="clases">
+          <h3>Controlando clases</h3>
+          <p>
+            <input type="text" [formControl]="nameCtrl">
+            <br>
+            <span class="message-error" [class.active]="nameCtrl.invalid && nameCtrl.touched">Nombre Invalido</span>
+          </p>
+          <p>
+            <input type="text" name="" id="">
+          </p>
         </div>
       </div>
     </div>
