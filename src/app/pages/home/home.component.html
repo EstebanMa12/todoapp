@@ -36,7 +36,7 @@
             >{{ task.title }}</label>
             <button class="destroy" (click)="deleteTask(i)"></button>
           </div>
-          <input class="edit" [value]="task.title" (change)="changeHandlerUpdate($event, i)"/>
+          <input class="edit" [value]="task.title" (keydown.enter)="changeHandlerUpdate($event, i)"/>
         </li>
       </ul>
     </section>
