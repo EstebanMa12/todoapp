@@ -4,55 +4,84 @@
     <div class="row">
       <div class="col-md-6">
         <h3>Click Event</h3>
-        <button class="btn btn-primary" (click)="clickHandler()">Click Me</button>
+        <button class="btn btn-primary" (click)="clickHandler()">
+          Click Me
+        </button>
       </div>
       <div class="col-md-6">
         <h3>Double click Event</h3>
-        <button class="btn btn-primary" (dblclick)="dblClickHandler()">Double Click Me</button>
+        <button class="btn btn-primary" (dblclick)="dblClickHandler()">
+          Double Click Me
+        </button>
       </div>
       <div class="keydown">
         <h3>Keydown Event</h3>
-        <input type="text" class="form-control" (keydown)="keyDownHandler($event)">
+        <input
+          type="text"
+          class="form-control"
+          (keydown)="keyDownHandler($event)"
+        />
       </div>
       <div class="keydown-special">
         <h3>Keydown Event with special key</h3>
         <p>Shift + t</p>
-        <input type="text" class="form-control" (keydown.shift.t)="clickHandler()">
+        <input
+          type="text"
+          class="form-control"
+          (keydown.shift.t)="clickHandler()"
+        />
       </div>
       <div class="change">
         <h3>Change Event</h3>
-        <input type="text" class="form-control" (change)="changeHandler($event)">
+        <input
+          type="text"
+          class="form-control"
+          (change)="changeHandler($event)"
+        />
       </div>
       <div class="change-number">
         <h3>Change Event with number</h3>
-        <input type="number" class="form-control" (change)="changeHandler($event)">
+        <input
+          type="number"
+          class="form-control"
+          (change)="changeHandler($event)"
+        />
       </div>
-
     </div>
-    <hr/>
+    <hr />
     <div class="signals-container">
       <h1>Signals</h1>
-      <p>Hola mi nombre es {{ name() }} y he escrito esto utilizando signals <br> <code><strong>name </strong>= signal('Esteban')</code></p>
+      <p>
+        Hola mi nombre es {{ name() }} y he escrito esto utilizando signals
+        <br />
+        <code><strong>name </strong>= signal('Esteban')</code>
+      </p>
 
       <div class="name-changer">
         <h3>Change name</h3>
-        <input type="text" [value]="name()" (change)="changeHandler($event)">
-        <br>
-        <p><strong>name: </strong><mark>{{ name() }}</mark></p>
+        <input type="text" [value]="name()" (change)="changeHandler($event)" />
+        <br />
+        <p>
+          <strong>name: </strong><mark>{{ name() }}</mark>
+        </p>
       </div>
     </div>
-    <hr/>
+    <hr />
     <div class="container-control">
       <h1>Estructuras de Control en Angular</h1>
       <div class="control">
         <div class="ngif">
           <h3>ngIf</h3>
-          <span>Solo aparece el mensaje si el nombre es <mark>'Esteban'</mark><br> y si la edad es mayor a 18</span>
-          <br>
-          <input type="number"
-          (change)="changeAge($event)"
+          <span
+            >Solo aparece el mensaje si el nombre es <mark>'Esteban'</mark
+            ><br />
+            y si la edad es mayor a 18</span
           >
-          <p *ngIf="name() === 'Esteban' && age() > 18; else noEsteban">Hola Esteban</p>
+          <br />
+          <input type="number" (change)="changeAge($event)" />
+          <p *ngIf="name() === 'Esteban' && age() > 18; else noEsteban">
+            Hola Esteban
+          </p>
 
           <!-- This ng-template is used to display a message when the user is not Esteban -->
           <ng-template #noEsteban>
@@ -62,23 +91,40 @@
         <div class="ngfor">
           <h3>ngFor</h3>
           <ul>
-            <p>Total: {{tasks().length}}</p>
-            <li *ngFor="let item of tasks(); index as i">
-              {{ i }} {{ item }}
-            </li>
+            <p>Total: {{ tasks().length }}</p>
+            <li *ngFor="let item of tasks(); index as i">{{ i }} {{ item }}</li>
           </ul>
         </div>
         <div class="ngswitch">
           <h3>ngSwitch</h3>
           <!-- Write a detailed explanation -->
-          <p>Elige un color: <mark>red, blue, green</mark></p>
-          <input type="text" (change)="changeColor($event)">
+          <p>Ingrese un color: <mark>red, blue, green</mark></p>
+          <input type="text" (change)="changeColor($event)" />
           <div [ngSwitch]="color()">
             <p *ngSwitchCase="'red'">Red</p>
             <p *ngSwitchCase="'blue'">Blue</p>
             <p *ngSwitchCase="'green'">Green</p>
             <p *ngSwitchDefault>Default</p>
           </div>
-      </div>
+          <hr />
 
+          <div class="Input">
+            <h3>Controlando un input</h3>
+            <input type="color" [formControl]="colorCtrl" />
+            <!-- Leyendo el valor del input -->
+            <p><strong>color: </strong>{{ colorCtrl.value }}</p>
+          </div>
+          <!--
+          <div class="form">
+            <h3>Controlando un formulario</h3>
+            <form (submit)="submitHandler($event)">
+              <input type="text" (input)="inputHandler($event)">
+              <button type="submit">Submit</button>
+            </form>
+            <p>{{ input }}</p>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

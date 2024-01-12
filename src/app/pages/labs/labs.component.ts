@@ -1,13 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormsModule} from '@angular/forms'
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms'
 
 
 @Component({
   selector: 'app-labs',
   standalone: true,
   imports: [CommonModule,
-    FormsModule],
+    FormsModule,
+    ReactiveFormsModule],
   templateUrl: './labs.component.html',
   styleUrl: './labs.component.sass'
 })
@@ -56,6 +57,11 @@ export class LabsComponent {
     const newValue = input.value
     this.color.set(newValue)
   }
-
-
+  colorCtrl= new FormControl()
+  // leyendo el color de forma reactiva desde el formulario de color
+  constructor() {
+    this.colorCtrl.valueChanges.subscribe((value)=>{
+      this.color.set(value)
+    })
+  }
 }
