@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task } from '../../models/task.model';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -24,7 +24,6 @@ export class HomeComponent {
     nonNullable: true,
     validators:[
       Validators.required,
-      Validators.minLength(3),
       Validators.maxLength(20),
       // Custom validation
       (control)=>{
@@ -35,6 +34,8 @@ export class HomeComponent {
       }
 
     ]});
+
+  filter = signal('all')
 
   changeHandler() {
     if (this.newTaskCtrl.valid) {
@@ -104,4 +105,23 @@ export class HomeComponent {
     );
     this.updateTask(index);
   }
+
+  changeFilter(filter: string) {
+    this.filter.set(filter);
+  }
+  taskByFilter = computed(() => {
+    const filter = this.filter();
+    const tasks = this.tasks();
+    if (filter === 'all') {
+      return tasks;
+    }
+    if (filter === 'completed') {
+      return tasks.filter((task) => task.completed);
+    }
+    if (filter === 'pending') {
+      return tasks.filter((task) => !task.completed);
+    }
+    // Default return statement
+    return tasks;
+  })
 }
