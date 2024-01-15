@@ -8,14 +8,14 @@
           Click Me
         </button>
       </div>
-      <hr>
+      <hr />
       <div class="col-md-6">
         <h3>Double click Event</h3>
         <button class="btn btn-primary" (dblclick)="dblClickHandler()">
           Double Click Me
         </button>
       </div>
-      <hr>
+      <hr />
       <div class="keydown">
         <h3>Keydown Event</h3>
         <input
@@ -24,7 +24,7 @@
           (keydown)="keyDownHandler($event)"
         />
       </div>
-      <hr>
+      <hr />
       <div class="keydown-special">
         <h3>Keydown Event with special key</h3>
         <p>Shift + t</p>
@@ -34,7 +34,7 @@
           (keydown.shift.t)="clickHandler()"
         />
       </div>
-      <hr>
+      <hr />
       <div class="change">
         <h3>Change Event</h3>
         <input
@@ -43,7 +43,7 @@
           (change)="changeHandler($event)"
         />
       </div>
-      <hr>
+      <hr />
       <div class="change-number">
         <h3>Change Event with number</h3>
         <input
@@ -52,7 +52,7 @@
           (change)="changeHandler($event)"
         />
       </div>
-      <hr>
+      <hr />
     </div>
     <hr />
     <div class="signals">
@@ -67,7 +67,11 @@
         </div>
         <div class="name-changer">
           <h3>Change name</h3>
-          <input type="text" [value]="name()" (change)="changeHandler($event)" />
+          <input
+            type="text"
+            [value]="name()"
+            (change)="changeHandler($event)"
+          />
           <br />
           <p>
             <strong>name: </strong><mark>{{ name() }}</mark>
@@ -88,20 +92,21 @@
           >
           <br />
           <input type="number" (change)="changeAge($event)" />
-          <p *ngIf="name() === 'Esteban' && age() > 18; else noEsteban">
-            Hola Esteban
-          </p>
+          @if (name() === 'Esteban' && age() > 18) {
+          <p>Hola Esteban</p>
+          } @else {
+          <p>Hola no eres Esteban</p>
+          }
 
           <!-- This ng-template is used to display a message when the user is not Esteban -->
-          <ng-template #noEsteban>
-            <p>Hola no eres Esteban</p>
-          </ng-template>
         </div>
         <div class="ngfor">
           <h3>ngFor</h3>
           <ul>
             <p>Total: {{ tasks().length }}</p>
-            <li *ngFor="let item of tasks(); index as i">{{ i }} {{ item }}</li>
+            @for (item of tasks(); track item; let i = $index) {
+            <li>{{ i }} {{ item }}</li>
+            }
           </ul>
         </div>
         <div class="ngswitch">
@@ -109,11 +114,16 @@
           <!-- Write a detailed explanation -->
           <p>Ingrese un color: <mark>red, blue, green</mark></p>
           <input type="text" (change)="changeColor($event)" />
-          <div [ngSwitch]="color()">
-            <p *ngSwitchCase="'red'">Red</p>
-            <p *ngSwitchCase="'blue'">Blue</p>
-            <p *ngSwitchCase="'green'">Green</p>
-            <p *ngSwitchDefault>Default</p>
+          <div>
+            @switch (color()) { @case ('red') {
+            <p>Red</p>
+            } @case ('blue') {
+            <p>Blue</p>
+            } @case ('green') {
+            <p>Green</p>
+            } @default {
+            <p>Default</p>
+            } }
           </div>
           <hr />
           <div class="Input">
@@ -154,25 +164,26 @@
             </g>
           </svg>
         </div>
-        <hr/>
+        <hr />
         <div class="width-control">
           <h3>Controlando el ancho de un elemento</h3>
-          <input type="number" [formControl]="widthCtrl">
-          <span class="box"
-          [style.width.px]="widthCtrl.value"
-          >
-          </span>
+          <input type="number" [formControl]="widthCtrl" />
+          <span class="box" [style.width.px]="widthCtrl.value"> </span>
         </div>
-        <hr/>
+        <hr />
         <div class="clases">
           <h3>Controlando clases</h3>
           <p>
-            <input type="text" [formControl]="nameCtrl">
-            <br>
-            <span class="message-error" [class.active]="nameCtrl.invalid && nameCtrl.touched">Nombre Invalido</span>
+            <input type="text" [formControl]="nameCtrl" />
+            <br />
+            <span
+              class="message-error"
+              [class.active]="nameCtrl.invalid && nameCtrl.touched"
+              >Nombre Invalido</span
+            >
           </p>
           <p>
-            <input type="text" name="" id="">
+            <input type="text" name="" id="" />
           </p>
         </div>
       </div>
