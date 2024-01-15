@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, signal, effect, inject, Injector} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task } from '../../models/task.model';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -114,6 +114,9 @@ export class HomeComponent {
    * @returns An array of tasks filtered based on the current filter.
    */
   // Estados compuestos
+  // EL computed  calcula un nuevo estado a partir de otros y siempre retorna
+  // una nueva instancia de los estados que lo componen.
+
   taskByFilter = computed(() => {
     const filter = this.filter();
     const tasks = this.tasks();
@@ -129,4 +132,49 @@ export class HomeComponent {
     // Default return statement
     return tasks;
   })
+
+
+  // Using effect to save data in localStorage
+  // El effect vigila cada vez que un estado cambia y permite ejecutar una logica a partir de él
+  // Se puede utilizar para guardar en el localstorage o hacer peticiones http
+
+  /**
+   * Creates an instance of the HomeComponent.
+   * This component is responsible for managing the home page of the application.
+  */
+// constructor(){
+//   effect(() => {
+//     console.log("Tasks have changed, saving to Local Storage");
+//     const tasks = this.tasks();
+//     localStorage.setItem('tasks', JSON.stringify(tasks));
+
+//     })
+//   }
+
+  // Momento en el que se inicializa nuestro componente
+  /**
+   * Initializes the component.
+   * Retrieves tasks from local storage if available.
+   */
+  ngOnInit(){
+    const storage = localStorage.getItem('tasks');
+    if (storage){
+      this.tasks.set(JSON.parse(storage));
+    }
+    this.trackTasks();// esto no iria si se hace con el constructor 
+  }
+
+  // Se traslada el effect a esta función porque se requiere que el effect valide los estados una vez de inicialice el componente, para que esto funcione a la función tracktask se le añade un inyector
+
+  injector = inject(Injector) // Nota, esto solo se hace si se utiliza el effect se utiliza en otro lugar que no sea el constructor
+
+
+  trackTasks(){
+    effect(() => {
+      console.log("Tasks have changed, saving to Local Storage");
+      const tasks = this.tasks();
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+
+      },{injector:this.injector})
+  }
 }
