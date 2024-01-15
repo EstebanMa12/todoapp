@@ -35,25 +35,24 @@ export class HomeComponent {
 
     ]});
 
-  filter = signal('all')
 
-  changeHandler() {
-    if (this.newTaskCtrl.valid) {
-      const value = this.newTaskCtrl.value;
-      this.addTask(value);
-      this.newTaskCtrl.setValue('');
+    changeHandler() {
+      if (this.newTaskCtrl.valid) {
+        const value = this.newTaskCtrl.value;
+        this.addTask(value);
+        this.newTaskCtrl.setValue('');
+      }
     }
-  }
 
 
-  addTask(title: string) {
-    const newTask = {
-      id: this.taskIdCounter,
-      title,
-      completed: false,
-      edited:false,
-    };
-    this.tasks.update((tasks) => [...tasks, newTask]);
+    addTask(title: string) {
+      const newTask = {
+        id: this.taskIdCounter,
+        title,
+        completed: false,
+        edited:false,
+      };
+      this.tasks.update((tasks) => [...tasks, newTask]);
     this.taskIdCounter++;
   }
   deleteTask(index: number) {
@@ -61,54 +60,60 @@ export class HomeComponent {
   }
   completedTask(index: number) {
     this.tasks.update((tasks) =>
-      tasks.map((task, position) => {
-        if (position === index) {
-          return {
-            ...task,
-            completed: !task.completed,
-          };
-        }
-        return task;
-      })
+    tasks.map((task, position) => {
+      if (position === index) {
+        return {
+          ...task,
+          completed: !task.completed,
+        };
+      }
+      return task;
+    })
     );
   }
   // updateTask(index: number, event: Event)
   updateTask(index: number){
     this.tasks.update((tasks) =>
-      tasks.map((task, position) => {
-        if (position === index && task.completed !== true) {
-          return {
-            ...task,
-            edited: !task.edited,
-          };
-        }
+    tasks.map((task, position) => {
+      if (position === index && task.completed !== true) {
         return {
           ...task,
-          edited: false,
+          edited: !task.edited,
         };
-      })
+      }
+      return {
+        ...task,
+        edited: false,
+      };
+    })
     );
   }
   changeHandlerUpdate(event: Event, index:number){
     const input = event.target as HTMLInputElement;
     const newTask = input.value;
     this.tasks.update((tasks)=>
-      tasks.map((task, position) => {
-        if (position === index) {
-          return {
-            ...task,
-            title: newTask,
-          };
-        }
-        return task;
-      })
+    tasks.map((task, position) => {
+      if (position === index) {
+        return {
+          ...task,
+          title: newTask,
+        };
+      }
+      return task;
+    })
     );
     this.updateTask(index);
   }
 
-  changeFilter(filter: string) {
+  filter = signal<'all'|'pending'|'completed'>('all')
+  changeFilter(filter: 'all'|'pending'|'completed') {
     this.filter.set(filter);
   }
+  /**
+   * Computed property that returns the tasks based on the current filter.
+   * @returns An array of tasks filtered based on the current filter.
+   */
+  // Estados compuestos
   taskByFilter = computed(() => {
     const filter = this.filter();
     const tasks = this.tasks();
